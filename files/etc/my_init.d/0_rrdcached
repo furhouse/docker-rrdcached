@@ -1,0 +1,39 @@
+#!/bin/bash -e
+
+LOCK_FILE=/var/lock/0_rrdcached.lock
+
+if [ -f "$LOCK_FILE" ]; then
+	exit 0
+fi
+
+if [ -z "$WRITE_TIMEOUT" ]; then
+	WRITE_TIMEOUT=1800
+fi
+
+sed -i "s/PLACEHOLDER_WRITE_TIMEOUT/$WRITE_TIMEOUT/g" /etc/service/rrdcached/run
+
+if [ -z "$DELAY" ]; then
+	DELAY=1800
+fi
+
+sed -i "s/PLACEHOLDER_DELAY/$DELAY/g" /etc/service/rrdcached/run
+
+if [ -z "$CACHE_TIMEOUT" ]; then
+	CACHE_TIMEOUT=3600
+fi
+
+sed -i "s/PLACEHOLDER_CACHE_TIMEOUT/$CACHE_TIMEOUT/g" /etc/service/rrdcached/run
+
+if [ -z "$PORT" ]; then
+	PORT=42217
+fi
+
+sed -i "s/PLACEHOLDER_PORT/$PORT/g" /etc/service/rrdcached/run
+
+if [ -z "$WRITE_THREADS" ]; then
+	WRITE_THREADS=4
+fi
+
+sed -i "s/PLACEHOLDER_WRITE_THREADS/$WRITE_THREADS/g" /etc/service/rrdcached/run
+
+touch "$LOCK_FILE"

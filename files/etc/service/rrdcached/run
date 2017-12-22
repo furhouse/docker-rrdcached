@@ -4,4 +4,4 @@ echo "Starting rrdcached..."
 
 rm -rf /var/run/rrdcached.pid
 
-exec rrdcached -g -w 1800 -z 1800 -f 3600 -s librenms -U librenms -G librenms -B -R -j /var/tmp -l 0:42217 -t 4 -F -b /opt/librenms/rrd
+exec rrdcached -g -w PLACEHOLDER_WRITE_TIMEOUT -z PLACEHOLDER_DELAY -f PLACEHOLDER_CACHE_TIMEOUT -s rrdcached -U rrdcached -G rrdcached -B -R -j /var/tmp -l 0:PLACEHOLDER_PORT -t PLACEHOLDER_WRITE_THREADS -F -b /opt/rrdcached/rrd

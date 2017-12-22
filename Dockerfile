@@ -10,13 +10,13 @@ RUN	apt-get update && \
 	apt-get -yq install --no-install-recommends \
 		rrdcached
 
-RUN	useradd librenms -d /opt/librenms -r -m && \
+RUN	useradd rrdcached -d /opt/rrdcached -r -m && \
 	apt-get -yq autoremove --purge && \
 	apt-get clean && \
 	rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ADD	files /
 RUN	chmod -R +x /etc/my_init.d /etc/service && \
-	find /opt/librenms \( ! -user librenms -o ! -group librenms \) -exec chown librenms:librenms {} \;
+	find /opt/rrdcached \( ! -user rrdcached -o ! -group rrdcached \) -exec chown rrdcached:rrdcached {} \;
 
-VOLUME	["/opt/librenms/rrd"]
+VOLUME	["/opt/rrdcached/rrd"]

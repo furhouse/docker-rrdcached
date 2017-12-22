@@ -1,0 +1,21 @@
+#!/bin/bash -e
+
+LOCK_FILE=/var/lock/5_environment.lock
+
+if [ -f "$LOCK_FILE" ]; then
+	exit 0
+fi
+
+function addConfig() {
+	if [ -n "${!1}" ]; then
+		echo "export $1=${!1}" >> /etc/rrdcached_environment
+	fi
+}
+
+addConfig WRITE_TIMEOUT
+addConfig DELAY
+addConfig CACHE_TIMEOUT
+addConfig PORT
+addConfig WRITE_THREADS
+
+touch "$LOCK_FILE"

@@ -1,23 +1,23 @@
 #!/bin/sh
 
-# Create a new librenms user and remap it to the given UID
+# Create a new rrdcached user and remap it to the given UID
 if [ ! -z "$PUID" ]; then
   if [ -z "$PGID" ]; then
     PGID=${PUID}
   fi
-  deluser librenms
-  delgroup librenms
-  delgroup librenms
-  groupadd --gid ${PGID} librenms
-  usermod -a -G librenms
-  useradd librenms -g librenms -d /opt/librenms -M -r -u ${PUID}
+  deluser rrdcached
+  delgroup rrdcached
+  delgroup rrdcached
+  groupadd --gid ${PGID} rrdcached
+  usermod -a -G rrdcached
+  useradd rrdcached -g rrdcached -d /opt/rrdcached -M -r -u ${PUID}
 fi
 
 # Don't `chown` if SKIP_CHOWN is set (Useful for NFS mounted shares)
 if [ -z "$SKIP_CHOWN" ]; then
 
-  chown -R librenms:librenms /opt/librenms/rrd || true
-  chmod -R u=rwX,g=rwX,o=rX /opt/librenms/rrd || true
+  chown -R rrdcached:rrdcached /opt/rrdcached/rrd || true
+  chmod -R u=rwX,g=rwX,o=rX /opt/rrdcached/rrd || true
   # Note || true after the chown avoids potential problems
   # when mounting volumes via NFS
 fi
