@@ -1,0 +1,7 @@
+#!/bin/bash -eu
+
+echo "Starting rrdcached..."
+
+rm -rf /var/run/rrdcached.pid
+
+exec rrdcached -g -w 1800 -z 1800 -f 3600 -s librenms -U librenms -G librenms -B -R -j /var/tmp -l 0:42217 -t 4 -F -b /opt/librenms/rrd
