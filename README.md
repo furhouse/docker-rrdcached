@@ -12,7 +12,7 @@ This is a generic docker container for [rrdcached](https://oss.oetiker.ch/rrdtoo
 
         docker run \
           -d \
-          -p 42217:42217 \
+          -p 41127:41127 \
           -e WRITE_TIMEOUT=900 \
           -e DELAY=900 \
           -e CACHE_TIMEOUT=1800 \
