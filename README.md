@@ -24,11 +24,13 @@ This is a generic docker container for [rrdcached](https://oss.oetiker.ch/rrdtoo
 
 ### 1.3 Environment Variables
 
-* WRITE_TIMEOUT         default         900
-* DELAY                 default         900
-* CACHE_TIMEOUT         default         1800
-* PORT                  default         42217
-* WRITE_THREADS         default         4
+| Environment Variable | Default Value |
+| ------------- |:-------------:|
+| WRITE_TIMEOUT | 1800 |
+| DELAY | 1800 |
+| CACHE_TIMEOUT | 3600 |
+| PORT | 42217 |
+| WRITE_THREADS | 4 |
 
 ## 2 Project Details
 
